@@ -1,26 +1,59 @@
 let get_weather = (data) => {
   $("#location").text(data.timezone);
-  let celsius = (data.currently.temperature - 32) /1.8
+  let celsius = (data.currently.temperature - 32) / 1.8
   $("#temperature").text(Math.floor(celsius) + " °C")
-  $("#weather-summary").html(data.currently.summary)
 
   let icon_mapping = {
-    "clear-day": "2",
-    "clear-night": "3",
-    "rain": "18",
-    "snow": "24",
-    "sleet": "23",
-    "wind": "6",
-    "fog": "13",
-    "cloudy": "14",
-    "partly-cloudy-day": "8",
-    "partly-cloudy-night": "9"
+    "clear-day": "wi-day-sunny",
+    "clear-night": "wi-night-clear",
+    "rain": "wi-rain",
+    "snow": "wi-snow",
+    "sleet": "wi-sleet",
+    "wind": "wi-windy",
+    "fog": "wi-fog",
+    "cloudy": "wi-cloudy",
+    "partly-cloudy-day": "wi-day-cloudy",
+    "partly-cloudy-night": "wi-night-alt-cloudy"
   }
 
-  let icon_api = data.currently.icon
-  let icon_svg = icon_mapping[icon_api]
+  let icon_api_current = data.currently.icon
+  let icon_font_current = icon_mapping[icon_api_current]
 
-  $('#weather-icon').append('<img src="/icons/6.svg">')
+  $('#weather-icon-current').html(
+    `
+    <div class="label">Currently</div>
+    <i class="wi ${icon_font_current}"></i>
+    `)
+
+  let icon_api_later = data.daily.icon
+  let icon_font_later = icon_mapping[icon_api_later]
+
+  $('#weather-icon-later').html(
+    `
+    <div class="label">Later</div>
+    <i class="wi ${icon_font_later}"></i>
+    `)
+
+  $("#weather-summary").html(data.hourly.summary)
+
+  let icon_to_clothing_description = {
+    "wi-day-sunny": "Wear a sunscreen.",
+    "wi-night-clear": "Enjoy your evening.",
+    "wi-rain": "Bring an umbrella.",
+    "wi-snow": "Wear a scarf and a pair of gloves.",
+    "wi-sleet": "Bring an umbrella and wear something woolly.",
+    "wi-windy": "Wear a hoodie.",
+    "wi-fog": "Erm, be careful of the roads.",
+    "wi-cloudy": "Enjoy your day.",
+    "partly-cloudy-day": "Enjoy your day.",
+    "partly-cloudy-night": "Enjoy your evening."
+  }
+
+  let clothing_advise = icon_to_clothing_description[icon_font_later]
+
+  $("#clothing-advise").html(`
+    ${clothing_advise}
+    `)
 }
 
 let get_location = (lat, lon) => {
