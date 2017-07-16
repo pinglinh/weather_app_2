@@ -1,9 +1,10 @@
 let get_weather = (data) => {
-  $("#location").html(`<span class="fa fa-map-marker"></span> ` +data.timezone);
-  let celsius = (data.currently.temperature - 32) / 1.8
-  // $("#temperature").text(Math.floor(celsius) + " °C")
+  $("#location").html(
+    `<span class="fa fa-map-marker"></span> ` + data.timezone)
 
-  $("#temperature").html(`<span class="fa fa-thermometer"></span> ` + Math.floor(celsius) + " °C")
+  let celsius = (data.currently.temperature - 32) / 1.8
+  $("#temperature").html(
+    `<span class="fa fa-thermometer"></span> ` + Math.floor(celsius) + " °C")
 
   let icon_mapping = {
     "clear-day": "wi-day-sunny",
@@ -22,46 +23,40 @@ let get_weather = (data) => {
   let icon_font_current = icon_mapping[icon_api_current]
 
   $('#weather-icon-current').html(
-    `
-    <div class="label">Currently</div>
-    <i class="wi ${icon_font_current}"></i>
-    `)
+    `<div class="label">Currently</div>
+    <i class="wi ${icon_font_current}"></i>`)
 
   let icon_api_later = data.daily.icon
   let icon_font_later = icon_mapping[icon_api_later]
 
   $('#weather-icon-later').html(
-    `
-    <div class="label">Later</div>
-    <i class="wi ${icon_font_later}"></i>
-    `)
+    `<div class="label">Later</div>
+     <i class="wi ${icon_font_later}"></i>`)
 
-  $("#weather-summary").html(`<span class="fa fa-angle-double-right"></span>` + data.hourly.summary)
+  $("#weather-summary").html(
+    `<span class="fa fa-angle-double-right"></span>` + data.hourly.summary)
 
   let icon_to_clothing_description = {
-    "wi-day-sunny": "Wear a sunscreen.",
-    "wi-night-clear": "Enjoy your evening.",
+    "wi-day-sunny": "Wear a sunscreen and bring sunglasses.",
+    "wi-night-clear": "Enjoy your evening - it's a clear night.",
     "wi-rain": "Bring an umbrella.",
     "wi-snow": "Wear a scarf and a pair of gloves.",
     "wi-sleet": "Bring an umbrella and wear something woolly.",
-    "wi-windy": "Wear a hoodie.",
-    "wi-fog": "Erm, be careful of the roads.",
-    "wi-cloudy": "Enjoy your day.",
-    "partly-cloudy-day": "Enjoy your day.",
-    "partly-cloudy-night": "Enjoy your evening."
+    "wi-windy": "Wear a hoodie - it'll be windy.",
+    "wi-fog": "Be careful on the roads.",
+    "wi-cloudy": "Enjoy your day it's only cloudy.",
+    "partly-cloudy-day": "Enjoy your day - it's only partly cloudy.",
+    "partly-cloudy-night": "Enjoy your evening - it's only partly cloudy."
   }
 
   let clothing_advise = icon_to_clothing_description[icon_font_later]
 
-  $("#clothing-advise").html(`
-    ${clothing_advise}
-    `)
+  $("#clothing-advise").html(
+    `${clothing_advise}`)
 }
 
 let get_location = (lat, lon) => {
   let key = "6fcaa5837756eefff17aa53ab53a2d1c";
-  // let latNumber = lat.coords.latitude;
-  // let lonNumber = lon.coords.longitude;
   let url = `https://api.darksky.net/forecast/${key}/${lat},${lon}`;
   return url;
 }
@@ -76,18 +71,14 @@ let current_position = (position) => {
     dataType: 'jsonp',
     success: get_weather
   })
-  // $.getJSON(url, get_weather)
 }
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(current_position);
-  }
-  else {
-    var url = "https://api.darksky.net/forecast/6fcaa5837756eefff17aa53ab53a2d1c/51.5074,0.1278"
-    $.ajax({
-    url: url,
-    dataType: 'jsonp',
-    success: get_weather
-  })
-    // $.getJSON(url, get_weather);
-  }
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(current_position);
+} else {
+  var url = "https://api.darksky.net/forecast/6fcaa5837756eefff17aa53ab53a2d1c/51.5074,0.1278"
+  $.ajax({
+  url: url,
+  dataType: 'jsonp',
+  success: get_weather})
+}
