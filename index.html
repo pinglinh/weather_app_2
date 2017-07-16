@@ -2,23 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta content='width=device-width, initial-scale=1' name='viewport'>
   <title>Weather App 2</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
   <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,700" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://rawgit.com/taw/76445a5e1e2cfa4e582e85e47618133e/raw/ab58cfa6cfec3b90a19e2838b3eea96523fdc586/weather%20font.css">
+
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="weather-box">
-    <!-- <div class="weather-heading">WEATHER</div> -->
-    <div class="location" id="location">London</div>
-    <div class="temperature" id="temperature">17 °C</div>
-    <div class="weather-icon" id="weather-icon"></div>
-    <div class="weather-summary" id="weather-summary">Partly Cloudy</div>
+
+  <div class="container">
+    <div class="row justify-content-center">
+        <div class="weather-box col-lg-6 col-md-8 col-sm-12">
+          <div class="location" id="location"></div>
+          <div class="temperature" id="temperature"></div>
+          <div class="row">
+            <div class="weather-icon-current col-6" id="weather-icon-current"></div>
+            <div class="weather-icon-later col-6" id="weather-icon-later"></div>
+          </div>
+          <div class="weather-summary" id="weather-summary"></div>
+          <div class="clothing-advise" id="clothing-advise"></div>
+        </div>
+    </div>
   </div>
 
   <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
-  <!-- <script src="script.js"></script> -->
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+  <script src="script.js"></script>
 </body>
 </html>
