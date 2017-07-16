@@ -1,7 +1,9 @@
 let get_weather = (data) => {
-  $("#location").text(data.timezone);
+  $("#location").html(`<span class="fa fa-map-marker"></span> ` +data.timezone);
   let celsius = (data.currently.temperature - 32) / 1.8
-  $("#temperature").text(Math.floor(celsius) + " °C")
+  // $("#temperature").text(Math.floor(celsius) + " °C")
+
+  $("#temperature").html(`<span class="fa fa-thermometer"></span> ` + Math.floor(celsius) + " °C")
 
   let icon_mapping = {
     "clear-day": "wi-day-sunny",
@@ -34,7 +36,7 @@ let get_weather = (data) => {
     <i class="wi ${icon_font_later}"></i>
     `)
 
-  $("#weather-summary").html(data.hourly.summary)
+  $("#weather-summary").html(`<span class="fa fa-angle-double-right"></span>` + data.hourly.summary)
 
   let icon_to_clothing_description = {
     "wi-day-sunny": "Wear a sunscreen.",
