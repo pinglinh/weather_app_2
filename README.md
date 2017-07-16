@@ -13,5 +13,6 @@ A weather app using the [Dark Sky API](https://darksky.net/dev/). The app shows 
 2. From the command line, run:<br>
     `open index.html`
 3. Browser will asks for permission to know your location - select `allow`.
+4. Wait for the data to be loaded - will take couple of seconds.
 
 
